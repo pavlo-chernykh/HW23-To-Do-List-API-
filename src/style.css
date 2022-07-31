@@ -127,3 +127,11 @@ body > * {
   top: 60px;
   left: 5%;
 }
+
+@media (max-width: 600px) {
+  .stat-container {
+    font-size: 1em;
+    top: 0;
+    left: 0;
+  }
+}
