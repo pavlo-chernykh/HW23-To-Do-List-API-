@@ -1,13 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=https://github.com/pavlo-chernykh/HW23-To-Do-List-API-/blob/main/src/index.html">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hillel home work</title>
+    <link rel="stylesheet" href="./src/style.css">
 </head>
 <body>
-  
+  <div class="todoHeader">To Do List</div>
+  <form class="signup-form">
+    <input type="email" class="create-form__field" name="todoEmail" id="email" placeholder="Enter your email">
+    <input type="password" class="create-form__field" name="todoPassword" id="password" placeholder="Enter your password" autocomplete="on">
+    <button class="create-form__submit">Sign up</button>
+  </form>
+  <form class="create-form" hidden>
+    <input type="text" class="create-form__field" name="todoName" placeholder="Enter task name">
+    <input type="text" class="create-form__field" name="todoText" placeholder="Enter task text">
+    <button class="create-form__submit">+</button>
+  </form>
+
+  <ul class="todo-list">
+    <!-- <li class="todo-card">
+      <div class="todo-card__name">Make Todo List app</div>
+      <div class="todo-card__task">I need to make it until thursday</div>
+      <div class="todo-card__actions">
+        <button class="todo-card__toggle"></button>
+        <button class="todo-card__remove">Delete</button>
+        <button class="todo-card__edit">✎</button>
+      </div>
+    </li> -->
+  </ul>
+  <div class="stat-container">
+    <div>
+      Total:
+      <span class="total"></span>
+    </div>
+    <div>
+      Finished:
+      <span class="finished"></span>
+    </div>
+    <div>
+      Not Finished:
+      <span class="not-finished"></span>
+    </div>
+  </div>
+    <script src="./src/index.js"></script>
 </body>
 </html>
