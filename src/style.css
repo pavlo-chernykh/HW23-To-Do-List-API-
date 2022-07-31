@@ -42,6 +42,10 @@ body > * {
   cursor: pointer;
   border-radius: 0.5rem;
 }
+.create-form__submit.create-form__logout {
+  margin-left: 105px;
+  color: lightcoral ;
+}
 
 .todo-list {
   padding-left: 0;

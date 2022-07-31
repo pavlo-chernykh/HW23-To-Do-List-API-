@@ -147,6 +147,7 @@ class TodoView {
 
     this.login();
     this.loginSignIn();
+    this.initLogout();
     this.initSubmit();
     this.initModify();
     this.renderStats();
@@ -219,6 +220,18 @@ class TodoView {
     this.list.append(fragment);
   }
 
+  //eslint-disable-next-line class-methods-use-this
+  renderVisibility() {
+    const loginArea = document.querySelector('.signup-form');
+    loginArea.hidden = true;
+
+    const todoArea = document.querySelector('.create-form');
+    todoArea.hidden = false;
+
+    const statArea = document.querySelector('.stat-container');
+    statArea.hidden = false;
+  }
+
   loginSignIn() {
     const localToken = localStorage.getItem('localToken');
     if (!localToken) {
@@ -226,11 +239,7 @@ class TodoView {
     } else {
       this.model.token = localToken;
       this.renderList();
-      const loginArea = document.querySelector('.signup-form');
-      loginArea.hidden = true;
-
-      const todoArea = document.querySelector('.create-form');
-      todoArea.hidden = false;
+      this.renderVisibility();
     }
   }
 
@@ -242,13 +251,41 @@ class TodoView {
       const password = document.querySelector('#password').value;
       await this.model.auth(email, password);
 
+      this.renderList();
+      this.renderVisibility();
+      this.renderStats();
+
       localStorage.setItem('localToken', this.model.token);
     });
   }
+  initLogout() {
+    this.form.addEventListener('click', async (e) => {
+      const logout = e.target.closest('.create-form__logout');
+      if (logout) {
+          localStorage.removeItem('localToken');
+          const loginArea = document.querySelector('.signup-form');
+          loginArea.hidden = false;
 
+          const todoArea = document.querySelector('.create-form');
+          todoArea.hidden = true;
+
+          const statArea = document.querySelector('.stat-container');
+          statArea.hidden = true;
+
+          this.list.hidden = true;
+
+          const inputValEmail = document.querySelector('#email');
+          const inputValPassword = document.querySelector('#password');
+
+          inputValEmail.value = '';
+          inputValPassword.value = '';
+        }
+    });
+  }
   initSubmit() {
     this.form.addEventListener('submit', async (e) => {
       e.preventDefault();
+
       const formData = new FormData(e.target);
       const name = formData.get('todoName').trim();
       const text = formData.get('todoText').trim();
